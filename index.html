@@ -13,209 +13,782 @@
             padding: 0;
         }
 
+        :root {
+            --background: #f8f5f1;
+            --surface: #ffffff;
+            --text: #292421;
+            --muted: #766e68;
+            --border: #e8e0da;
+            --accent: #9b695c;
+            --accent-dark: #765047;
+            --premium: #efe3dc;
+            --dark: #292421;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: #f8f5f1;
-            color: #332d2a;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, Helvetica, Arial, sans-serif;
+
+            background: var(--background);
+            color: var(--text);
             line-height: 1.6;
         }
 
-        header {
-            background: #ffffff;
-            padding: 32px 20px;
-            border-bottom: 1px solid #e8e0da;
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
-        .header-content {
-            max-width: 1100px;
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .header-container {
+            max-width: 1180px;
             margin: auto;
+            padding: 18px 24px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 8px;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
         }
 
-        .subtitle {
-            color: #756b66;
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            font-size: 14px;
         }
 
-        main {
-            max-width: 1100px;
-            margin: 50px auto;
-            padding: 0 20px;
+        nav a {
+            color: var(--muted);
+            transition: 0.2s;
         }
 
-        .intro {
-            margin-bottom: 40px;
+        nav a:hover {
+            color: var(--text);
         }
 
-        .intro h1 {
-            font-size: 36px;
-            margin-bottom: 12px;
+        .login-button {
+            border: 1px solid var(--border);
+            padding: 9px 17px;
+            border-radius: 8px;
+            color: var(--text);
+            font-weight: 600;
         }
 
-        .intro p {
-            color: #756b66;
-            max-width: 700px;
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            max-width: 1180px;
+            margin: auto;
+            padding: 85px 24px 65px;
         }
 
-        .section-title {
-            font-size: 24px;
-            margin-bottom: 20px;
+        .hero-label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--accent);
+            margin-bottom: 18px;
         }
 
-        .library {
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 68px);
+            line-height: 1.05;
+            letter-spacing: -2.5px;
+            max-width: 780px;
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            font-size: 19px;
+            color: var(--muted);
+        }
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .search-area {
+            max-width: 1180px;
+            margin: 0 auto 65px;
+            padding: 0 24px;
+        }
+
+        .search-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .search-icon {
+            font-size: 18px;
+            color: var(--muted);
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 15px;
+            background: transparent;
+            color: var(--text);
+        }
+
+        /* =========================
+           CATEGORIES
+        ========================= */
+
+        .section {
+            max-width: 1180px;
+            margin: 0 auto 75px;
+            padding: 0 24px;
+        }
+
+        .section-heading {
+            margin-bottom: 25px;
+        }
+
+        .section-heading h2 {
+            font-size: 28px;
+            letter-spacing: -0.8px;
+            margin-bottom: 6px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .category {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 9px 17px;
+            font-size: 14px;
+            color: var(--muted);
+            transition: 0.2s;
+        }
+
+        .category:hover {
+            border-color: var(--accent);
+            color: var(--accent-dark);
+        }
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
 
         .card {
-            background: #ffffff;
-            border: 1px solid #e8e0da;
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-radius: 14px;
-            padding: 24px;
+            padding: 27px;
+
+            display: flex;
+            flex-direction: column;
+
+            min-height: 290px;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .tag {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: bold;
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(50, 40, 35, 0.07);
+        }
+
+        .card-tag {
+            font-size: 11px;
+            font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 12px;
-            color: #8a6658;
+            letter-spacing: 0.8px;
+            color: var(--accent);
+            margin-bottom: 17px;
         }
 
         .card h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
+            font-size: 21px;
+            line-height: 1.25;
+            margin-bottom: 12px;
+            letter-spacing: -0.4px;
         }
 
-        .card p {
-            color: #756b66;
-            margin-bottom: 20px;
+        .card-description {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .card-action {
+            margin-top: auto;
         }
 
         .button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
             padding: 10px 16px;
             border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            background: #332d2a;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            background: var(--dark);
             color: white;
+
+            transition: 0.2s;
         }
 
-        .premium {
-            background: #f1e7df;
+        .button:hover {
+            opacity: 0.88;
         }
 
-        .premium .button {
-            background: #8a6658;
+        /* =========================
+           PREMIUM
+        ========================= */
+
+        .premium-section {
+            background: #eee5df;
+            padding: 70px 0;
+            margin-bottom: 75px;
+        }
+
+        .premium-inner {
+            max-width: 1180px;
+            margin: auto;
+            padding: 0 24px;
+        }
+
+        .premium-header {
+            margin-bottom: 30px;
+        }
+
+        .premium-header h2 {
+            font-size: 30px;
+            margin-bottom: 8px;
+            letter-spacing: -0.8px;
+        }
+
+        .premium-header p {
+            color: var(--muted);
+            max-width: 600px;
+        }
+
+        .premium-card {
+            background: #fffaf7;
+            border: 1px solid #dccbc1;
+        }
+
+        .premium-card .card-tag {
+            color: var(--accent-dark);
+        }
+
+        .premium-badge {
+            display: inline-block;
+            background: var(--dark);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 5px 9px;
+            border-radius: 5px;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .premium-card .button {
+            background: var(--accent-dark);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 35px 24px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .footer-container {
+            max-width: 1180px;
+            margin: auto;
+
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            nav {
+                display: none;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero {
+                padding-top: 60px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<header>
-    <div class="header-content">
-        <div class="logo">Biblioteca Delas</div>
-        <div class="subtitle">
-            Recursos para construir negócios com mais clareza e consistência.
-        </div>
-    </div>
-</header>
+    <!-- =========================
+         HEADER
+    ========================== -->
 
-<main>
+    <header>
 
-    <section class="intro">
-        <h1>Biblioteca de Recursos</h1>
-        <p>
-            Prompts, ferramentas e materiais para ajudar você
-            a pensar, estruturar e desenvolver seu negócio.
-        </p>
-    </section>
+        <div class="header-container">
 
-    <section>
-        <h2 class="section-title">Conteúdos gratuitos</h2>
+            <a href="#" class="logo">
+                Biblioteca Delas
+            </a>
 
-        <div class="library">
+            <nav>
 
-            <article class="card">
-                <span class="tag">Prompt</span>
-
-                <h3>
-                    Clareza de posicionamento
-                </h3>
-
-                <p>
-                    Um prompt para ajudar você a organizar
-                    sua proposta de valor e comunicar melhor
-                    o que torna seu negócio diferente.
-                </p>
-
-                <a href="#" class="button">
-                    Acessar recurso
+                <a href="#">
+                    Início
                 </a>
-            </article>
 
-            <article class="card">
-                <span class="tag">Prompt</span>
-
-                <h3>
-                    Ideias de conteúdo
-                </h3>
-
-                <p>
-                    Transforme conhecimentos do seu negócio
-                    em possibilidades de conteúdo mais estratégicas.
-                </p>
-
-                <a href="#" class="button">
-                    Acessar recurso
+                <a href="#categorias">
+                    Categorias
                 </a>
-            </article>
+
+                <a href="#gratuitos">
+                    Gratuitos
+                </a>
+
+                <a href="#premium">
+                    Premium
+                </a>
+
+                <a href="#" class="login-button">
+                    Entrar
+                </a>
+
+            </nav>
 
         </div>
-    </section>
 
-    <section style="margin-top: 60px;">
+    </header>
 
-        <h2 class="section-title">
-            Conteúdos premium
-        </h2>
 
-        <div class="library">
+    <!-- =========================
+         HERO
+    ========================== -->
 
-            <article class="card premium">
+    <main>
 
-                <span class="tag">
-                    🔒 Premium
+        <section class="hero">
+
+            <span class="hero-label">
+                Biblioteca Delas
+            </span>
+
+            <h1>
+                Recursos para construir
+                negócios com mais clareza.
+            </h1>
+
+            <p>
+                Prompts, ferramentas, templates e materiais
+                para ajudar você a pensar melhor sobre o seu
+                negócio e transformar estratégia em ação.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             SEARCH
+        ========================== -->
+
+        <section class="search-area">
+
+            <div class="search-box">
+
+                <span class="search-icon">
+                    ⌕
                 </span>
 
-                <h3>
-                    Biblioteca Estratégica
-                </h3>
+                <input
+                    type="text"
+                    placeholder="O que você está procurando?"
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CATEGORIES
+        ========================== -->
+
+        <section class="section" id="categorias">
+
+            <div class="section-heading">
+
+                <h2>
+                    Explore por categoria
+                </h2>
 
                 <p>
-                    Acesse uma coleção completa de prompts,
-                    templates e recursos exclusivos.
+                    Encontre recursos de acordo com o desafio
+                    que você está trabalhando.
                 </p>
 
-                <a href="#" class="button">
-                    Quero acessar
+            </div>
+
+
+            <div class="categories">
+
+                <a href="#" class="category">
+                    Estratégia
                 </a>
 
-            </article>
+                <a href="#" class="category">
+                    Posicionamento
+                </a>
+
+                <a href="#" class="category">
+                    Conteúdo
+                </a>
+
+                <a href="#" class="category">
+                    Marketing
+                </a>
+
+                <a href="#" class="category">
+                    Vendas
+                </a>
+
+                <a href="#" class="category">
+                    Gestão
+                </a>
+
+                <a href="#" class="category">
+                    Inteligência Artificial
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FREE CONTENT
+        ========================== -->
+
+        <section class="section" id="gratuitos">
+
+            <div class="section-heading">
+
+                <h2>
+                    Recursos gratuitos
+                </h2>
+
+                <p>
+                    Experimente alguns dos recursos da Biblioteca Delas.
+                </p>
+
+            </div>
+
+
+            <div class="cards">
+
+                <article class="card">
+
+                    <span class="card-tag">
+                        Prompt · Posicionamento
+                    </span>
+
+                    <h3>
+                        Clareza de posicionamento
+                    </h3>
+
+                    <p class="card-description">
+                        Organize sua proposta de valor e
+                        identifique elementos que diferenciam
+                        seu negócio.
+                    </p>
+
+                    <div class="card-action">
+
+                        <a href="#" class="button">
+                            Ver recurso →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card">
+
+                    <span class="card-tag">
+                        Prompt · Conteúdo
+                    </span>
+
+                    <h3>
+                        Banco de ideias de conteúdo
+                    </h3>
+
+                    <p class="card-description">
+                        Transforme conhecimentos do seu negócio
+                        em possibilidades de conteúdo.
+                    </p>
+
+                    <div class="card-action">
+
+                        <a href="#" class="button">
+                            Ver recurso →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card">
+
+                    <span class="card-tag">
+                        Prompt · Estratégia
+                    </span>
+
+                    <h3>
+                        Diagnóstico inicial do negócio
+                    </h3>
+
+                    <p class="card-description">
+                        Organize suas principais questões e
+                        identifique onde concentrar sua atenção.
+                    </p>
+
+                    <div class="card-action">
+
+                        <a href="#" class="button">
+                            Ver recurso →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PREMIUM
+        ========================== -->
+
+        <section class="premium-section" id="premium">
+
+            <div class="premium-inner">
+
+                <div class="premium-header">
+
+                    <h2>
+                        Biblioteca Premium
+                    </h2>
+
+                    <p>
+                        Recursos mais completos para aprofundar
+                        a construção e o desenvolvimento do seu negócio.
+                    </p>
+
+                </div>
+
+
+                <div class="cards">
+
+                    <article class="card premium-card">
+
+                        <span class="premium-badge">
+                            🔒 PREMIUM
+                        </span>
+
+                        <span class="card-tag">
+                            Ofertas
+                        </span>
+
+                        <h3>
+                            Criação de Oferta
+                        </h3>
+
+                        <p class="card-description">
+                            Estruture promessa, proposta de valor,
+                            diferenciais e elementos de percepção
+                            de valor da sua oferta.
+                        </p>
+
+                        <div class="card-action">
+
+                            <a href="#" class="button">
+                                Quero acessar →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="card premium-card">
+
+                        <span class="premium-badge">
+                            🔒 PREMIUM
+                        </span>
+
+                        <span class="card-tag">
+                            Estratégia
+                        </span>
+
+                        <h3>
+                            Diagnóstico Estratégico
+                        </h3>
+
+                        <p class="card-description">
+                            Uma sequência de prompts para analisar
+                            diferentes dimensões do seu negócio.
+                        </p>
+
+                        <div class="card-action">
+
+                            <a href="#" class="button">
+                                Quero acessar →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="card premium-card">
+
+                        <span class="premium-badge">
+                            🔒 PREMIUM
+                        </span>
+
+                        <span class="card-tag">
+                            Conteúdo
+                        </span>
+
+                        <h3>
+                            Sistema de Conteúdo
+                        </h3>
+
+                        <p class="card-description">
+                            Recursos para transformar conhecimento
+                            em uma estrutura de conteúdo consistente.
+                        </p>
+
+                        <div class="card-action">
+
+                            <a href="#" class="button">
+                                Quero acessar →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-container">
+
+            <span>
+                © Biblioteca Delas
+            </span>
+
+            <span>
+                Parte do Ecossistema Delas
+            </span>
 
         </div>
 
-    </section>
-
-</main>
+    </footer>
 
 </body>
 </html>
