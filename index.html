@@ -1,361 +1,862 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Biblioteca Delas</title>
 
+
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
+
         :root {
+
             --background: #f8f5f1;
             --surface: #ffffff;
             --text: #292421;
             --muted: #766e68;
             --border: #e8e0da;
+
             --accent: #9b695c;
             --accent-dark: #765047;
+
             --premium: #efe3dc;
+
             --dark: #292421;
+
         }
+
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                Roboto, Helvetica, Arial, sans-serif;
+
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif;
 
             background: var(--background);
+
             color: var(--text);
+
             line-height: 1.6;
+
         }
 
+
         a {
+
             text-decoration: none;
+
             color: inherit;
+
         }
+
 
         /* =========================
            HEADER
         ========================= */
 
         header {
+
             background: rgba(255, 255, 255, 0.96);
-            border-bottom: 1px solid var(--border);
+
+            border-bottom:
+                1px solid var(--border);
+
             position: sticky;
+
             top: 0;
+
             z-index: 10;
+
         }
 
+
         .header-container {
+
             max-width: 1180px;
+
             margin: auto;
+
             padding: 18px 24px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
             gap: 30px;
+
         }
+
 
         .logo {
+
             font-size: 20px;
+
             font-weight: 700;
+
             letter-spacing: -0.4px;
+
         }
+
 
         nav {
+
             display: flex;
+
             align-items: center;
+
             gap: 26px;
+
             font-size: 14px;
+
         }
+
 
         nav a {
+
             color: var(--muted);
+
             transition: 0.2s;
+
         }
+
 
         nav a:hover {
+
             color: var(--text);
+
         }
 
+
         .login-button {
-            border: 1px solid var(--border);
+
+            border:
+                1px solid var(--border);
+
             padding: 9px 17px;
+
             border-radius: 8px;
+
             color: var(--text);
+
             font-weight: 600;
+
+            cursor: pointer;
+
+            background: transparent;
+
         }
+
 
         /* =========================
            HERO
         ========================= */
 
         .hero {
+
             max-width: 1180px;
+
             margin: auto;
+
             padding: 85px 24px 65px;
+
         }
+
 
         .hero-label {
+
             display: inline-block;
+
             font-size: 12px;
+
             font-weight: 700;
+
             text-transform: uppercase;
+
             letter-spacing: 1.2px;
+
             color: var(--accent);
+
             margin-bottom: 18px;
+
         }
+
 
         .hero h1 {
-            font-size: clamp(40px, 6vw, 68px);
+
+            font-size:
+                clamp(40px, 6vw, 68px);
+
             line-height: 1.05;
+
             letter-spacing: -2.5px;
+
             max-width: 780px;
+
             margin-bottom: 24px;
+
         }
 
+
         .hero p {
+
             max-width: 650px;
+
             font-size: 19px;
+
             color: var(--muted);
+
         }
+
 
         /* =========================
            SEARCH
         ========================= */
 
         .search-area {
+
             max-width: 1180px;
-            margin: 0 auto 65px;
-            padding: 0 24px;
+
+            margin:
+                0 auto 65px;
+
+            padding:
+                0 24px;
+
         }
+
 
         .search-box {
-            background: var(--surface);
-            border: 1px solid var(--border);
+
+            background:
+                var(--surface);
+
+            border:
+                1px solid var(--border);
+
             border-radius: 12px;
-            padding: 16px 20px;
+
+            padding:
+                16px 20px;
 
             display: flex;
+
             align-items: center;
+
             gap: 12px;
+
         }
+
 
         .search-icon {
+
             font-size: 18px;
+
             color: var(--muted);
+
         }
 
+
         .search-box input {
+
             border: none;
+
             outline: none;
+
             width: 100%;
+
             font-size: 15px;
+
             background: transparent;
+
             color: var(--text);
+
         }
+
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        .section {
+
+            max-width: 1180px;
+
+            margin:
+                0 auto 75px;
+
+            padding:
+                0 24px;
+
+        }
+
+
+        .section-heading {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .section-heading h2 {
+
+            font-size: 28px;
+
+            letter-spacing: -0.8px;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .section-heading p {
+
+            color: var(--muted);
+
+        }
+
 
         /* =========================
            CATEGORIES
         ========================= */
 
-        .section {
-            max-width: 1180px;
-            margin: 0 auto 75px;
-            padding: 0 24px;
-        }
-
-        .section-heading {
-            margin-bottom: 25px;
-        }
-
-        .section-heading h2 {
-            font-size: 28px;
-            letter-spacing: -0.8px;
-            margin-bottom: 6px;
-        }
-
-        .section-heading p {
-            color: var(--muted);
-        }
-
         .categories {
+
             display: flex;
+
             flex-wrap: wrap;
+
             gap: 10px;
+
         }
+
 
         .category {
-            background: var(--surface);
-            border: 1px solid var(--border);
+
+            background:
+                var(--surface);
+
+            border:
+                1px solid var(--border);
+
             border-radius: 100px;
-            padding: 9px 17px;
+
+            padding:
+                9px 17px;
+
             font-size: 14px;
+
             color: var(--muted);
+
             transition: 0.2s;
+
         }
 
+
         .category:hover {
-            border-color: var(--accent);
-            color: var(--accent-dark);
+
+            border-color:
+                var(--accent);
+
+            color:
+                var(--accent-dark);
+
         }
+
 
         /* =========================
            CARDS
         ========================= */
 
         .cards {
+
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 20px;
+
         }
 
+
         .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
+
+            background:
+                var(--surface);
+
+            border:
+                1px solid var(--border);
+
             border-radius: 14px;
+
             padding: 27px;
 
             display: flex;
+
             flex-direction: column;
 
             min-height: 290px;
-            transition: transform 0.2s, box-shadow 0.2s;
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+
         }
+
 
         .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(50, 40, 35, 0.07);
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(50, 40, 35, 0.07);
+
         }
+
 
         .card-tag {
+
             font-size: 11px;
+
             font-weight: 700;
+
             text-transform: uppercase;
+
             letter-spacing: 0.8px;
+
             color: var(--accent);
+
             margin-bottom: 17px;
+
         }
+
 
         .card h3 {
+
             font-size: 21px;
+
             line-height: 1.25;
+
             margin-bottom: 12px;
+
             letter-spacing: -0.4px;
+
         }
+
 
         .card-description {
+
             color: var(--muted);
+
             font-size: 14px;
+
             margin-bottom: 25px;
+
         }
+
 
         .card-action {
+
             margin-top: auto;
+
         }
 
+
         .button {
+
             display: inline-flex;
+
             align-items: center;
+
             justify-content: center;
 
-            padding: 10px 16px;
+            padding:
+                10px 16px;
+
             border-radius: 8px;
 
             font-size: 13px;
+
             font-weight: 700;
 
-            background: var(--dark);
+            background:
+                var(--dark);
+
             color: white;
 
             transition: 0.2s;
+
         }
 
+
         .button:hover {
+
             opacity: 0.88;
+
         }
+
 
         /* =========================
            PREMIUM
         ========================= */
 
         .premium-section {
-            background: #eee5df;
-            padding: 70px 0;
-            margin-bottom: 75px;
+
+            background:
+                #eee5df;
+
+            padding:
+                70px 0;
+
+            margin-bottom:
+                75px;
+
         }
+
 
         .premium-inner {
+
             max-width: 1180px;
+
             margin: auto;
-            padding: 0 24px;
+
+            padding:
+                0 24px;
+
         }
+
 
         .premium-header {
+
             margin-bottom: 30px;
+
         }
+
 
         .premium-header h2 {
+
             font-size: 30px;
+
             margin-bottom: 8px;
+
             letter-spacing: -0.8px;
+
         }
+
 
         .premium-header p {
+
             color: var(--muted);
+
             max-width: 600px;
+
         }
+
 
         .premium-card {
-            background: #fffaf7;
-            border: 1px solid #dccbc1;
+
+            background:
+                #fffaf7;
+
+            border:
+                1px solid #dccbc1;
+
         }
+
 
         .premium-card .card-tag {
-            color: var(--accent-dark);
+
+            color:
+                var(--accent-dark);
+
         }
+
 
         .premium-badge {
+
             display: inline-block;
-            background: var(--dark);
+
+            background:
+                var(--dark);
+
             color: white;
+
             font-size: 10px;
+
             font-weight: 700;
-            padding: 5px 9px;
+
+            padding:
+                5px 9px;
+
             border-radius: 5px;
+
             margin-bottom: 16px;
+
             letter-spacing: 0.5px;
+
         }
 
+
         .premium-card .button {
-            background: var(--accent-dark);
+
+            background:
+                var(--accent-dark);
+
         }
+
 
         /* =========================
            FOOTER
         ========================= */
 
         footer {
-            border-top: 1px solid var(--border);
-            padding: 35px 24px;
-            color: var(--muted);
+
+            border-top:
+                1px solid var(--border);
+
+            padding:
+                35px 24px;
+
+            color:
+                var(--muted);
+
             font-size: 13px;
+
         }
 
+
         .footer-container {
+
             max-width: 1180px;
+
             margin: auto;
 
             display: flex;
+
             justify-content: space-between;
+
             gap: 20px;
+
         }
+
+
+        /* =========================
+           LOGIN MODAL
+        ========================= */
+
+        .login-overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(41, 36, 33, 0.45);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 9999;
+
+        }
+
+
+        .login-box {
+
+            position: relative;
+
+            width: 100%;
+
+            max-width: 420px;
+
+            background:
+                #ffffff;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 16px;
+
+            padding: 35px;
+
+            box-shadow:
+                0 20px 60px
+                rgba(0, 0, 0, 0.15);
+
+        }
+
+
+        .login-box h2 {
+
+            font-size: 27px;
+
+            line-height: 1.2;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .login-box p {
+
+            color:
+                var(--muted);
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .login-box label {
+
+            display: block;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .login-box input {
+
+            width: 100%;
+
+            padding:
+                13px 14px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 8px;
+
+            margin-bottom: 18px;
+
+            font-size: 15px;
+
+            outline: none;
+
+        }
+
+
+        .login-box input:focus {
+
+            border-color:
+                var(--accent);
+
+        }
+
+
+        .login-submit {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background:
+                var(--dark);
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .login-submit:disabled {
+
+            opacity: 0.6;
+
+            cursor: wait;
+
+        }
+
+
+        .login-close {
+
+            position: absolute;
+
+            top: 15px;
+
+            right: 17px;
+
+            border: none;
+
+            background: none;
+
+            font-size: 27px;
+
+            color: var(--muted);
+
+            cursor: pointer;
+
+        }
+
+
+        #loginMessage {
+
+            margin-top: 15px;
+
+            font-size: 13px;
+
+            text-align: center;
+
+        }
+
+
+        .login-success {
+
+            color:
+                #4f7657;
+
+        }
+
+
+        .login-error {
+
+            color:
+                var(--accent-dark);
+
+        }
+
 
         /* =========================
            RESPONSIVE
@@ -364,40 +865,75 @@
         @media (max-width: 850px) {
 
             nav {
+
                 display: none;
+
             }
+
 
             .cards {
-                grid-template-columns: repeat(2, 1fr);
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
             }
 
+
             .hero {
+
                 padding-top: 60px;
+
             }
+
         }
+
 
         @media (max-width: 600px) {
 
             .cards {
-                grid-template-columns: 1fr;
+
+                grid-template-columns:
+                    1fr;
+
             }
+
 
             .hero h1 {
+
                 font-size: 42px;
+
             }
+
 
             .hero p {
+
                 font-size: 17px;
+
             }
+
 
             .footer-container {
+
                 flex-direction: column;
+
             }
+
+
+            .login-box {
+
+                padding: 30px 24px;
+
+            }
+
         }
+
     </style>
+
 </head>
 
+
 <body>
+
 
     <!-- =========================
          HEADER
@@ -410,6 +946,7 @@
             <a href="#" class="logo">
                 Biblioteca Delas
             </a>
+
 
             <nav>
 
@@ -429,7 +966,11 @@
                     Premium
                 </a>
 
-                <a href="#" class="login-button">
+                <a
+                    href="#"
+                    class="login-button"
+                    id="loginButton"
+                >
                     Entrar
                 </a>
 
@@ -441,10 +982,15 @@
 
 
     <!-- =========================
-         HERO
+         MAIN
     ========================== -->
 
     <main>
+
+
+        <!-- =========================
+             HERO
+        ========================== -->
 
         <section class="hero">
 
@@ -452,15 +998,21 @@
                 Biblioteca Delas
             </span>
 
+
             <h1>
+
                 Recursos para construir
                 negócios com mais clareza.
+
             </h1>
 
+
             <p>
+
                 Prompts, ferramentas, templates e materiais
                 para ajudar você a pensar melhor sobre o seu
                 negócio e transformar estratégia em ação.
+
             </p>
 
         </section>
@@ -478,6 +1030,7 @@
                     ⌕
                 </span>
 
+
                 <input
                     type="text"
                     placeholder="O que você está procurando?"
@@ -492,7 +1045,10 @@
              CATEGORIES
         ========================== -->
 
-        <section class="section" id="categorias">
+        <section
+            class="section"
+            id="categorias"
+        >
 
             <div class="section-heading">
 
@@ -500,9 +1056,12 @@
                     Explore por categoria
                 </h2>
 
+
                 <p>
+
                     Encontre recursos de acordo com o desafio
                     que você está trabalhando.
+
                 </p>
 
             </div>
@@ -510,31 +1069,58 @@
 
             <div class="categories">
 
-                <a href="#" class="category">
+                <a
+                    href="#"
+                    class="category"
+                >
                     Estratégia
                 </a>
 
-                <a href="#" class="category">
+
+                <a
+                    href="#"
+                    class="category"
+                >
                     Posicionamento
                 </a>
 
-                <a href="#" class="category">
+
+                <a
+                    href="#"
+                    class="category"
+                >
                     Conteúdo
                 </a>
 
-                <a href="#" class="category">
+
+                <a
+                    href="#"
+                    class="category"
+                >
                     Marketing
                 </a>
 
-                <a href="#" class="category">
+
+                <a
+                    href="#"
+                    class="category"
+                >
                     Vendas
                 </a>
 
-                <a href="#" class="category">
+
+                <a
+                    href="#"
+                    class="category"
+                >
                     Gestão
                 </a>
 
-                <a href="#" class="category">
+
+                <a
+                    href="#"
+                    class="category"
+                >
                     Inteligência Artificial
                 </a>
 
@@ -547,13 +1133,17 @@
              FREE CONTENT
         ========================== -->
 
-        <section class="section" id="gratuitos">
+        <section
+            class="section"
+            id="gratuitos"
+        >
 
             <div class="section-heading">
 
                 <h2>
                     Recursos gratuitos
                 </h2>
+
 
                 <p>
                     Experimente alguns dos recursos da Biblioteca Delas.
@@ -564,25 +1154,34 @@
 
             <div class="cards">
 
+
                 <article class="card">
 
                     <span class="card-tag">
                         Prompt · Posicionamento
                     </span>
 
+
                     <h3>
                         Clareza de posicionamento
                     </h3>
 
+
                     <p class="card-description">
+
                         Organize sua proposta de valor e
                         identifique elementos que diferenciam
                         seu negócio.
+
                     </p>
+
 
                     <div class="card-action">
 
-                        <a href="#" class="button">
+                        <a
+                            href="#"
+                            class="button"
+                        >
                             Ver recurso →
                         </a>
 
@@ -597,18 +1196,26 @@
                         Prompt · Conteúdo
                     </span>
 
+
                     <h3>
                         Banco de ideias de conteúdo
                     </h3>
 
+
                     <p class="card-description">
+
                         Transforme conhecimentos do seu negócio
                         em possibilidades de conteúdo.
+
                     </p>
+
 
                     <div class="card-action">
 
-                        <a href="#" class="button">
+                        <a
+                            href="#"
+                            class="button"
+                        >
                             Ver recurso →
                         </a>
 
@@ -623,24 +1230,33 @@
                         Prompt · Estratégia
                     </span>
 
+
                     <h3>
                         Diagnóstico inicial do negócio
                     </h3>
 
+
                     <p class="card-description">
+
                         Organize suas principais questões e
                         identifique onde concentrar sua atenção.
+
                     </p>
+
 
                     <div class="card-action">
 
-                        <a href="#" class="button">
+                        <a
+                            href="#"
+                            class="button"
+                        >
                             Ver recurso →
                         </a>
 
                     </div>
 
                 </article>
+
 
             </div>
 
@@ -651,9 +1267,13 @@
              PREMIUM
         ========================== -->
 
-        <section class="premium-section" id="premium">
+        <section
+            class="premium-section"
+            id="premium"
+        >
 
             <div class="premium-inner">
+
 
                 <div class="premium-header">
 
@@ -661,9 +1281,12 @@
                         Biblioteca Premium
                     </h2>
 
+
                     <p>
+
                         Recursos mais completos para aprofundar
                         a construção e o desenvolvimento do seu negócio.
+
                     </p>
 
                 </div>
@@ -671,29 +1294,41 @@
 
                 <div class="cards">
 
-                    <article class="card premium-card">
+
+                    <article
+                        class="card premium-card"
+                    >
 
                         <span class="premium-badge">
                             🔒 PREMIUM
                         </span>
+
 
                         <span class="card-tag">
                             Ofertas
                         </span>
 
+
                         <h3>
                             Criação de Oferta
                         </h3>
 
+
                         <p class="card-description">
+
                             Estruture promessa, proposta de valor,
                             diferenciais e elementos de percepção
                             de valor da sua oferta.
+
                         </p>
+
 
                         <div class="card-action">
 
-                            <a href="#" class="button">
+                            <a
+                                href="#"
+                                class="button"
+                            >
                                 Quero acessar →
                             </a>
 
@@ -702,28 +1337,39 @@
                     </article>
 
 
-                    <article class="card premium-card">
+                    <article
+                        class="card premium-card"
+                    >
 
                         <span class="premium-badge">
                             🔒 PREMIUM
                         </span>
+
 
                         <span class="card-tag">
                             Estratégia
                         </span>
 
+
                         <h3>
                             Diagnóstico Estratégico
                         </h3>
 
+
                         <p class="card-description">
+
                             Uma sequência de prompts para analisar
                             diferentes dimensões do seu negócio.
+
                         </p>
+
 
                         <div class="card-action">
 
-                            <a href="#" class="button">
+                            <a
+                                href="#"
+                                class="button"
+                            >
                                 Quero acessar →
                             </a>
 
@@ -732,40 +1378,53 @@
                     </article>
 
 
-                    <article class="card premium-card">
+                    <article
+                        class="card premium-card"
+                    >
 
                         <span class="premium-badge">
                             🔒 PREMIUM
                         </span>
 
+
                         <span class="card-tag">
                             Conteúdo
                         </span>
+
 
                         <h3>
                             Sistema de Conteúdo
                         </h3>
 
+
                         <p class="card-description">
+
                             Recursos para transformar conhecimento
                             em uma estrutura de conteúdo consistente.
+
                         </p>
+
 
                         <div class="card-action">
 
-                            <a href="#" class="button">
+                            <a
+                                href="#"
+                                class="button"
+                            >
                                 Quero acessar →
                             </a>
 
                         </div>
 
                     </article>
+
 
                 </div>
 
             </div>
 
         </section>
+
 
     </main>
 
@@ -782,6 +1441,7 @@
                 © Biblioteca Delas
             </span>
 
+
             <span>
                 Parte do Ecossistema Delas
             </span>
@@ -790,5 +1450,459 @@
 
     </footer>
 
+
+    <!-- =========================
+         SUPABASE
+    ========================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <script>
+
+        /*
+         * =====================================================
+         * CONFIGURAÇÃO DO SUPABASE
+         * =====================================================
+         *
+         * COLE AQUI:
+         *
+         * 1. A API URL do seu projeto Supabase
+         *
+         * 2. A Publishable Key que começa com:
+         *
+         *    sb_publishable_
+         *
+         */
+
+
+        const SUPABASE_URL =
+            "COLE_AQUI_SUA_API_URL";
+
+
+        const SUPABASE_PUBLISHABLE_KEY =
+            "COLE_AQUI_SUA_PUBLISHABLE_KEY";
+
+
+        /*
+         * Cria a conexão com o Supabase
+         */
+
+        const supabaseClient =
+            window.supabase.createClient(
+                https://fxdhdkczjhqpdcpxzymv.supabase.co/rest/v1/,
+                sb_publishable_Itp55B8Rvagy9KxkBeo8Mw_1VTo8szK
+            );
+
+
+        /*
+         * =====================================================
+         * BOTÃO ENTRAR
+         * =====================================================
+         */
+
+        const loginButton =
+            document.getElementById(
+                "loginButton"
+            );
+
+
+        loginButton.addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+                abrirLogin();
+
+            }
+        );
+
+
+        /*
+         * =====================================================
+         * ABRIR LOGIN
+         * =====================================================
+         */
+
+        function abrirLogin() {
+
+
+            /*
+             * Impede que duas janelas
+             * de login sejam abertas.
+             */
+
+            if (
+                document.getElementById(
+                    "loginModal"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            const modal =
+                document.createElement(
+                    "div"
+                );
+
+
+            modal.id =
+                "loginModal";
+
+
+            modal.className =
+                "login-overlay";
+
+
+            modal.innerHTML = `
+
+                <div class="login-box">
+
+
+                    <button
+                        type="button"
+                        class="login-close"
+                        id="fecharLogin"
+                        aria-label="Fechar"
+                    >
+                        ×
+                    </button>
+
+
+                    <h2>
+                        Entrar na Biblioteca Delas
+                    </h2>
+
+
+                    <p>
+                        Acesse sua conta para continuar.
+                    </p>
+
+
+                    <form id="loginForm">
+
+
+                        <label for="loginEmail">
+                            E-mail
+                        </label>
+
+
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            placeholder="seu@email.com"
+                            autocomplete="email"
+                            required
+                        >
+
+
+                        <label for="loginPassword">
+                            Senha
+                        </label>
+
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Sua senha"
+                            autocomplete="current-password"
+                            required
+                        >
+
+
+                        <button
+                            type="submit"
+                            class="login-submit"
+                        >
+                            Entrar
+                        </button>
+
+
+                        <div
+                            id="loginMessage"
+                        ></div>
+
+
+                    </form>
+
+
+                </div>
+
+            `;
+
+
+            document.body.appendChild(
+                modal
+            );
+
+
+            /*
+             * Botão fechar
+             */
+
+            document
+                .getElementById(
+                    "fecharLogin"
+                )
+                .addEventListener(
+                    "click",
+                    fecharLogin
+                );
+
+
+            /*
+             * Formulário
+             */
+
+            document
+                .getElementById(
+                    "loginForm"
+                )
+                .addEventListener(
+                    "submit",
+                    fazerLogin
+                );
+
+
+            /*
+             * Clicar fora da caixa
+             * também fecha o login.
+             */
+
+            modal.addEventListener(
+                "click",
+                function(event) {
+
+                    if (
+                        event.target === modal
+                    ) {
+
+                        fecharLogin();
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /*
+         * =====================================================
+         * FECHAR LOGIN
+         * =====================================================
+         */
+
+        function fecharLogin() {
+
+            const modal =
+                document.getElementById(
+                    "loginModal"
+                );
+
+
+            if (modal) {
+
+                modal.remove();
+
+            }
+
+        }
+
+
+        /*
+         * =====================================================
+         * FAZER LOGIN
+         * =====================================================
+         */
+
+        async function fazerLogin(
+            event
+        ) {
+
+
+            event.preventDefault();
+
+
+            const email =
+                document
+                    .getElementById(
+                        "loginEmail"
+                    )
+                    .value
+                    .trim();
+
+
+            const password =
+                document
+                    .getElementById(
+                        "loginPassword"
+                    )
+                    .value;
+
+
+            const message =
+                document.getElementById(
+                    "loginMessage"
+                );
+
+
+            const button =
+                document.querySelector(
+                    ".login-submit"
+                );
+
+
+            /*
+             * Estado de carregamento
+             */
+
+            button.disabled =
+                true;
+
+
+            button.textContent =
+                "Entrando...";
+
+
+            message.textContent =
+                "";
+
+
+            message.className = "";
+
+
+            /*
+             * Envia e-mail e senha
+             * para o Supabase.
+             */
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .auth
+                    .signInWithPassword({
+
+                        email:
+                            email,
+
+                        password:
+                            password
+
+                    });
+
+
+            /*
+             * Erro de autenticação
+             */
+
+            if (error) {
+
+
+                console.error(
+                    "Erro de login:",
+                    error
+                );
+
+
+                message.textContent =
+                    "E-mail ou senha incorretos.";
+
+
+                message.className =
+                    "login-error";
+
+
+                button.disabled =
+                    false;
+
+
+                button.textContent =
+                    "Entrar";
+
+
+                return;
+
+            }
+
+
+            /*
+             * Login realizado
+             */
+
+            if (data.user) {
+
+
+                message.textContent =
+                    "Login realizado com sucesso!";
+
+
+                message.className =
+                    "login-success";
+
+
+                button.textContent =
+                    "Entrou";
+
+
+                /*
+                 * Por enquanto NÃO redirecionamos.
+                 *
+                 * Primeiro vamos confirmar que
+                 * a autenticação está funcionando.
+                 */
+
+            }
+
+        }
+
+
+        /*
+         * =====================================================
+         * VERIFICAR SESSÃO
+         * =====================================================
+         *
+         * Esta parte permite saber se a pessoa
+         * já está autenticada no Supabase.
+         */
+
+        async function verificarSessao() {
+
+
+            const {
+                data
+            } =
+                await supabaseClient
+                    .auth
+                    .getSession();
+
+
+            if (
+                data.session
+            ) {
+
+                console.log(
+                    "Usuária autenticada:",
+                    data.session.user.email
+                );
+
+            }
+
+        }
+
+
+        verificarSessao();
+
+
+    </script>
+
+
 </body>
+
 </html>
