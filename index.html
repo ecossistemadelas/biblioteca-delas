@@ -6,6 +6,9 @@
 
     <title>Biblioteca Delas</title>
 
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         * {
             box-sizing: border-box;
@@ -21,14 +24,23 @@
             --border: #e8e0da;
             --accent: #9b695c;
             --accent-dark: #765047;
-            --premium-bg: #eee5df;
             --dark: #292421;
-            --danger: #a34d4d;
+            --error-bg: #fbedeb;
+            --error-text: #a94b43;
+            --success-bg: #edf7f0;
+            --success-text: #39734b;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                Roboto, Helvetica, Arial, sans-serif;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif;
+
             background: var(--background);
             color: var(--text);
             line-height: 1.6;
@@ -39,14 +51,9 @@
             color: inherit;
         }
 
-        button,
-        input {
-            font: inherit;
-        }
-
         /* =========================
            HEADER
-        ========================= */
+        ========================== */
 
         header {
             background: rgba(255, 255, 255, 0.96);
@@ -89,24 +96,25 @@
             color: var(--text);
         }
 
-        .login-button,
-        .logout-button {
+        .login-button {
             border: 1px solid var(--border);
             padding: 9px 17px;
             border-radius: 8px;
             color: var(--text);
             font-weight: 600;
-            background: white;
             cursor: pointer;
+            background: white;
         }
 
         .logout-button {
-            display: none;
+            background: var(--dark);
+            color: white;
+            border-color: var(--dark);
         }
 
         /* =========================
            HERO
-        ========================= */
+        ========================== */
 
         .hero {
             max-width: 1180px;
@@ -140,7 +148,7 @@
 
         /* =========================
            SEARCH
-        ========================= */
+        ========================== */
 
         .search-area {
             max-width: 1180px;
@@ -175,7 +183,7 @@
 
         /* =========================
            SECTIONS
-        ========================= */
+        ========================== */
 
         .section {
             max-width: 1180px;
@@ -199,7 +207,7 @@
 
         /* =========================
            CATEGORIES
-        ========================= */
+        ========================== */
 
         .categories {
             display: flex;
@@ -224,7 +232,7 @@
 
         /* =========================
            CARDS
-        ========================= */
+        ========================== */
 
         .cards {
             display: grid;
@@ -290,10 +298,9 @@
             background: var(--dark);
             color: white;
 
-            border: none;
-            cursor: pointer;
-
             transition: 0.2s;
+            cursor: pointer;
+            border: none;
         }
 
         .button:hover {
@@ -302,10 +309,10 @@
 
         /* =========================
            PREMIUM
-        ========================= */
+        ========================== */
 
         .premium-section {
-            background: var(--premium-bg);
+            background: #eee5df;
             padding: 70px 0;
             margin-bottom: 75px;
         }
@@ -358,22 +365,21 @@
 
         /* =========================
            LOGIN MODAL
-        ========================= */
+        ========================== */
 
         .modal-overlay {
-            display: none;
-
             position: fixed;
             inset: 0;
 
-            background: rgba(41, 36, 33, 0.45);
+            background: rgba(41, 36, 33, 0.48);
 
-            z-index: 100;
-
+            display: none;
             align-items: center;
             justify-content: center;
 
-            padding: 20px;
+            padding: 24px;
+
+            z-index: 100;
         }
 
         .modal-overlay.active {
@@ -382,60 +388,64 @@
 
         .login-modal {
             width: 100%;
-            max-width: 430px;
+            max-width: 520px;
 
             background: white;
-            border-radius: 16px;
+            border-radius: 18px;
 
-            padding: 35px;
-
-            box-shadow: 0 25px 70px rgba(41, 36, 33, 0.18);
+            padding: 42px;
 
             position: relative;
+
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.18);
         }
 
         .close-modal {
             position: absolute;
-            top: 15px;
-            right: 18px;
+            top: 22px;
+            right: 24px;
 
             border: none;
             background: transparent;
 
-            font-size: 25px;
+            font-size: 28px;
             color: var(--muted);
 
             cursor: pointer;
         }
 
         .login-modal h2 {
-            font-size: 28px;
-            margin-bottom: 8px;
+            font-size: 32px;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
         }
 
-        .login-modal-description {
+        .login-description {
             color: var(--muted);
-            font-size: 14px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
         }
 
         .form-group input {
             width: 100%;
-            border: 1px solid var(--border);
-            border-radius: 8px;
 
-            padding: 12px 13px;
+            padding: 15px 16px;
+
+            border: 1px solid var(--border);
+            border-radius: 10px;
+
+            font-size: 16px;
+            color: var(--text);
 
             outline: none;
         }
@@ -446,55 +456,76 @@
 
         .login-submit {
             width: 100%;
-            margin-top: 5px;
+            padding: 14px;
+
+            border: none;
+            border-radius: 9px;
+
+            background: var(--dark);
+            color: white;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .login-submit:disabled {
+            opacity: 0.6;
+            cursor: wait;
         }
 
         .login-message {
             display: none;
 
-            margin-top: 15px;
-            padding: 12px;
+            margin-top: 18px;
 
-            border-radius: 8px;
+            padding: 13px 15px;
 
-            background: #f9eeee;
-            color: var(--danger);
+            border-radius: 9px;
 
-            font-size: 13px;
+            font-size: 14px;
+        }
+
+        .login-message.error {
+            display: block;
+            background: var(--error-bg);
+            color: var(--error-text);
         }
 
         .login-message.success {
-            background: #eef7f0;
-            color: #47704f;
+            display: block;
+            background: var(--success-bg);
+            color: var(--success-text);
         }
 
         /* =========================
-           PREMIUM ACCESS MESSAGE
-        ========================= */
+           PREMIUM LOCK
+        ========================== */
 
-        .access-message {
-            display: none;
+        .premium-locked-message {
+            background: #fffaf7;
+            border: 1px solid #dccbc1;
+            border-radius: 14px;
 
-            margin-top: 18px;
+            padding: 35px;
 
-            padding: 15px;
-
-            border-radius: 10px;
-
-            background: #f8f5f1;
-            border: 1px solid var(--border);
-
-            font-size: 14px;
-            color: var(--muted);
+            text-align: center;
         }
 
-        .access-message strong {
-            color: var(--text);
+        .premium-locked-message h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .premium-locked-message p {
+            color: var(--muted);
+            margin-bottom: 20px;
         }
 
         /* =========================
            FOOTER
-        ========================= */
+        ========================== */
 
         footer {
             border-top: 1px solid var(--border);
@@ -514,7 +545,7 @@
 
         /* =========================
            RESPONSIVE
-        ========================= */
+        ========================== */
 
         @media (max-width: 850px) {
 
@@ -550,7 +581,7 @@
             }
 
             .login-modal {
-                padding: 28px 22px;
+                padding: 32px 24px;
             }
         }
     </style>
@@ -589,19 +620,11 @@
                 </a>
 
                 <button
-                    type="button"
-                    class="login-button"
                     id="loginButton"
+                    class="login-button"
+                    type="button"
                 >
                     Entrar
-                </button>
-
-                <button
-                    type="button"
-                    class="logout-button"
-                    id="logoutButton"
-                >
-                    Sair
                 </button>
 
             </nav>
@@ -612,7 +635,7 @@
 
 
     <!-- =========================
-         HERO
+         CONTEÚDO
     ========================== -->
 
     <main>
@@ -637,9 +660,7 @@
         </section>
 
 
-        <!-- =========================
-             SEARCH
-        ========================== -->
+        <!-- BUSCA -->
 
         <section class="search-area">
 
@@ -651,7 +672,6 @@
 
                 <input
                     type="text"
-                    id="searchInput"
                     placeholder="O que você está procurando?"
                 >
 
@@ -660,9 +680,7 @@
         </section>
 
 
-        <!-- =========================
-             CATEGORIES
-        ========================== -->
+        <!-- CATEGORIAS -->
 
         <section class="section" id="categorias">
 
@@ -678,7 +696,6 @@
                 </p>
 
             </div>
-
 
             <div class="categories">
 
@@ -715,9 +732,7 @@
         </section>
 
 
-        <!-- =========================
-             FREE CONTENT
-        ========================== -->
+        <!-- GRATUITOS -->
 
         <section class="section" id="gratuitos">
 
@@ -732,7 +747,6 @@
                 </p>
 
             </div>
-
 
             <div class="cards">
 
@@ -754,13 +768,9 @@
 
                     <div class="card-action">
 
-                        <button
-                            type="button"
-                            class="button"
-                            onclick="showFreeResource('Clareza de posicionamento')"
-                        >
+                        <a href="#" class="button">
                             Ver recurso →
-                        </button>
+                        </a>
 
                     </div>
 
@@ -784,13 +794,9 @@
 
                     <div class="card-action">
 
-                        <button
-                            type="button"
-                            class="button"
-                            onclick="showFreeResource('Banco de ideias de conteúdo')"
-                        >
+                        <a href="#" class="button">
                             Ver recurso →
-                        </button>
+                        </a>
 
                     </div>
 
@@ -814,13 +820,9 @@
 
                     <div class="card-action">
 
-                        <button
-                            type="button"
-                            class="button"
-                            onclick="showFreeResource('Diagnóstico inicial do negócio')"
-                        >
+                        <a href="#" class="button">
                             Ver recurso →
-                        </button>
+                        </a>
 
                     </div>
 
@@ -853,7 +855,40 @@
                 </div>
 
 
-                <div class="cards">
+                <!-- BLOQUEADO -->
+
+                <div
+                    id="premiumLocked"
+                    class="premium-locked-message"
+                >
+
+                    <h3>
+                        Conteúdo exclusivo para assinantes
+                    </h3>
+
+                    <p>
+                        Entre com sua conta para acessar
+                        os recursos da Biblioteca Premium.
+                    </p>
+
+                    <button
+                        id="premiumLoginButton"
+                        class="button"
+                        type="button"
+                    >
+                        Entrar para acessar →
+                    </button>
+
+                </div>
+
+
+                <!-- CONTEÚDO PREMIUM -->
+
+                <div
+                    id="premiumContent"
+                    class="cards"
+                    style="display: none;"
+                >
 
                     <article class="card premium-card">
 
@@ -877,13 +912,9 @@
 
                         <div class="card-action">
 
-                            <button
-                                type="button"
-                                class="button"
-                                onclick="accessPremium('Criação de Oferta')"
-                            >
+                            <a href="#" class="button">
                                 Quero acessar →
-                            </button>
+                            </a>
 
                         </div>
 
@@ -911,13 +942,9 @@
 
                         <div class="card-action">
 
-                            <button
-                                type="button"
-                                class="button"
-                                onclick="accessPremium('Diagnóstico Estratégico')"
-                            >
+                            <a href="#" class="button">
                                 Quero acessar →
-                            </button>
+                            </a>
 
                         </div>
 
@@ -945,13 +972,9 @@
 
                         <div class="card-action">
 
-                            <button
-                                type="button"
-                                class="button"
-                                onclick="accessPremium('Sistema de Conteúdo')"
-                            >
+                            <a href="#" class="button">
                                 Quero acessar →
-                            </button>
+                            </a>
 
                         </div>
 
@@ -992,34 +1015,30 @@
     ========================== -->
 
     <div
-        class="modal-overlay"
         id="loginModal"
+        class="modal-overlay"
     >
 
-        <div
-            class="login-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="loginTitle"
-        >
+        <div class="login-modal">
 
             <button
-                type="button"
+                id="closeModal"
                 class="close-modal"
-                id="closeLoginModal"
+                type="button"
                 aria-label="Fechar"
             >
                 ×
             </button>
 
-            <h2 id="loginTitle">
+            <h2>
                 Entrar
             </h2>
 
-            <p class="login-modal-description">
+            <p class="login-description">
                 Acesse os recursos da Biblioteca Premium
                 com seu e-mail e senha.
             </p>
+
 
             <form id="loginForm">
 
@@ -1030,10 +1049,10 @@
                     </label>
 
                     <input
-                        type="email"
                         id="email"
-                        name="email"
+                        type="email"
                         placeholder="seu@email.com"
+                        autocomplete="email"
                         required
                     >
 
@@ -1047,10 +1066,10 @@
                     </label>
 
                     <input
-                        type="password"
                         id="password"
-                        name="password"
+                        type="password"
                         placeholder="Sua senha"
+                        autocomplete="current-password"
                         required
                     >
 
@@ -1058,198 +1077,113 @@
 
 
                 <button
+                    id="loginSubmit"
+                    class="login-submit"
                     type="submit"
-                    class="button login-submit"
                 >
                     Entrar
                 </button>
+
+
+                <div
+                    id="loginMessage"
+                    class="login-message"
+                ></div>
 
             </form>
 
-
-            <div
-                class="login-message"
-                id="loginMessage"
-            ></div>
-
         </div>
 
     </div>
 
 
     <!-- =========================
-         ACCESS MESSAGE
+         JAVASCRIPT
     ========================== -->
-
-    <div
-        class="modal-overlay"
-        id="accessModal"
-    >
-
-        <div class="login-modal">
-
-            <button
-                type="button"
-                class="close-modal"
-                onclick="closeAccessModal()"
-                aria-label="Fechar"
-            >
-                ×
-            </button>
-
-            <h2>
-                Acesso Premium
-            </h2>
-
-            <p class="login-modal-description">
-                Este recurso faz parte da Biblioteca Premium.
-            </p>
-
-            <div
-                class="access-message"
-                id="accessMessage"
-                style="display:block;"
-            >
-                <strong id="accessTitle">
-                    Conteúdo Premium
-                </strong>
-
-                <br><br>
-
-                Entre com sua conta Premium para acessar este recurso.
-            </div>
-
-            <div
-                style="
-                    display:flex;
-                    gap:10px;
-                    margin-top:20px;
-                    flex-wrap:wrap;
-                "
-            >
-
-                <button
-                    type="button"
-                    class="button"
-                    onclick="openLoginFromAccess()"
-                >
-                    Entrar
-                </button>
-
-                <button
-                    type="button"
-                    class="button"
-                    style="
-                        background:white;
-                        color:var(--text);
-                        border:1px solid var(--border);
-                    "
-                    onclick="closeAccessModal()"
-                >
-                    Fechar
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         SUPABASE
-    ========================== -->
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
     <script>
 
-        /*
-         * =====================================================
-         * CONFIGURAÇÃO SUPABASE
-         * =====================================================
-         *
-         * NÃO coloque sua chave secreta aqui.
-         *
-         * A URL e a Publishable Key serão configuradas
-         * posteriormente através do processo de publicação.
-         *
-         * Por enquanto deixamos estes campos preparados.
-         */
+        /* ==========================================
+           CONFIGURAÇÃO DO SUPABASE
+        ========================================== */
 
-        const SUPABASE_URL = window.SUPABASE_URL || "";
+        const SUPABASE_URL =
+            "https://fxdhdkczjhqpdcpxzymv.supabase.co";
+
         const SUPABASE_PUBLISHABLE_KEY =
-            window.SUPABASE_PUBLISHABLE_KEY || "";
+            "sb_publishable_Itp55B8Rvagy9KxkBeo8Mw_1VTo8szK";
 
 
-        let supabaseClient = null;
-
-
-        /*
-         * Inicializa o Supabase somente quando
-         * URL e chave estiverem disponíveis.
-         */
-
-        if (
-            SUPABASE_URL &&
-            SUPABASE_PUBLISHABLE_KEY
-        ) {
-
-            supabaseClient = window.supabase.createClient(
+        const supabaseClient =
+            window.supabase.createClient(
                 SUPABASE_URL,
                 SUPABASE_PUBLISHABLE_KEY
             );
 
-        }
 
-
-        /* =========================
-           ELEMENTOS
-        ========================= */
+        /* ==========================================
+           ELEMENTOS DA PÁGINA
+        ========================================== */
 
         const loginButton =
             document.getElementById("loginButton");
 
-        const logoutButton =
-            document.getElementById("logoutButton");
+        const premiumLoginButton =
+            document.getElementById("premiumLoginButton");
 
         const loginModal =
             document.getElementById("loginModal");
 
-        const closeLoginModal =
-            document.getElementById("closeLoginModal");
+        const closeModal =
+            document.getElementById("closeModal");
 
         const loginForm =
             document.getElementById("loginForm");
 
+        const emailInput =
+            document.getElementById("email");
+
+        const passwordInput =
+            document.getElementById("password");
+
+        const loginSubmit =
+            document.getElementById("loginSubmit");
+
         const loginMessage =
             document.getElementById("loginMessage");
 
-        const accessModal =
-            document.getElementById("accessModal");
+        const premiumLocked =
+            document.getElementById("premiumLocked");
 
-        const accessTitle =
-            document.getElementById("accessTitle");
+        const premiumContent =
+            document.getElementById("premiumContent");
 
 
-        /* =========================
-           LOGIN MODAL
-        ========================= */
+        /* ==========================================
+           ABRIR LOGIN
+        ========================================== */
 
-        function openLogin() {
-
-            loginMessage.style.display = "none";
-            loginMessage.textContent = "";
-
-            loginForm.reset();
+        function openLoginModal() {
 
             loginModal.classList.add("active");
+
+            loginMessage.className =
+                "login-message";
+
+            loginMessage.textContent = "";
+
+            setTimeout(() => {
+                emailInput.focus();
+            }, 100);
 
         }
 
 
-        function closeLogin() {
+        /* ==========================================
+           FECHAR LOGIN
+        ========================================== */
+
+        function closeLoginModal() {
 
             loginModal.classList.remove("active");
 
@@ -1258,13 +1192,19 @@
 
         loginButton.addEventListener(
             "click",
-            openLogin
+            openLoginModal
         );
 
 
-        closeLoginModal.addEventListener(
+        premiumLoginButton.addEventListener(
             "click",
-            closeLogin
+            openLoginModal
+        );
+
+
+        closeModal.addEventListener(
+            "click",
+            closeLoginModal
         );
 
 
@@ -1272,21 +1212,17 @@
             "click",
             function(event) {
 
-                if (
-                    event.target === loginModal
-                ) {
-
-                    closeLogin();
-
+                if (event.target === loginModal) {
+                    closeLoginModal();
                 }
 
             }
         );
 
 
-        /* =========================
+        /* ==========================================
            LOGIN
-        ========================= */
+        ========================================== */
 
         loginForm.addEventListener(
             "submit",
@@ -1294,293 +1230,214 @@
 
                 event.preventDefault();
 
+
                 const email =
-                    document.getElementById("email").value.trim();
+                    emailInput.value.trim();
 
                 const password =
-                    document.getElementById("password").value;
+                    passwordInput.value;
 
 
-                if (!supabaseClient) {
+                loginSubmit.disabled = true;
 
-                    showLoginMessage(
-                        "A conexão com o sistema de autenticação ainda não foi configurada.",
-                        false
-                    );
-
-                    return;
-
-                }
+                loginSubmit.textContent =
+                    "Entrando...";
 
 
-                showLoginMessage(
-                    "Entrando...",
-                    true
-                );
+                loginMessage.className =
+                    "login-message";
+
+                loginMessage.textContent =
+                    "";
 
 
-                const {
-                    data,
-                    error
-                } = await supabaseClient.auth.signInWithPassword({
-                    email: email,
-                    password: password
-                });
+                const { data, error } =
+                    await supabaseClient.auth.signInWithPassword({
+                        email: email,
+                        password: password
+                    });
 
 
                 if (error) {
 
-                    showLoginMessage(
-                        "E-mail ou senha inválidos.",
-                        false
-                    );
+                    console.error(error);
 
-                    console.error(
-                        "Erro de login:",
-                        error
-                    );
+                    loginMessage.className =
+                        "login-message error";
+
+                    loginMessage.textContent =
+                        "E-mail ou senha incorretos. Verifique seus dados e tente novamente.";
+
+                    loginSubmit.disabled = false;
+
+                    loginSubmit.textContent =
+                        "Entrar";
 
                     return;
-
                 }
 
 
-                showLoginMessage(
-                    "Login realizado com sucesso.",
-                    true
+                /* ==================================
+                   LOGIN REALIZADO
+                ================================== */
+
+                console.log(
+                    "Usuário autenticado:",
+                    data.user
                 );
 
 
-                setTimeout(
-                    function() {
+                loginMessage.className =
+                    "login-message success";
 
-                        closeLogin();
+                loginMessage.textContent =
+                    "Login realizado com sucesso!";
 
-                        updateHeader();
 
-                    },
-                    700
-                );
+                updateLoggedInInterface();
+
+
+                setTimeout(() => {
+
+                    closeLoginModal();
+
+                }, 700);
+
+
+                loginSubmit.disabled = false;
+
+                loginSubmit.textContent =
+                    "Entrar";
 
             }
         );
 
 
-        function showLoginMessage(
-            message,
-            success
-        ) {
+        /* ==========================================
+           ATUALIZA INTERFACE APÓS LOGIN
+        ========================================== */
 
-            loginMessage.textContent =
-                message;
+        function updateLoggedInInterface() {
 
-            loginMessage.style.display =
-                "block";
+            loginButton.textContent =
+                "Sair";
 
-            loginMessage.classList.toggle(
-                "success",
-                success
+            loginButton.classList.add(
+                "logout-button"
             );
+
+            premiumLocked.style.display =
+                "none";
+
+            premiumContent.style.display =
+                "grid";
 
         }
 
 
-        /* =========================
+        /* ==========================================
            LOGOUT
-        ========================= */
+        ========================================== */
 
-        logoutButton.addEventListener(
+        loginButton.addEventListener(
             "click",
             async function() {
 
-                if (!supabaseClient) {
-                    return;
+                const {
+                    data: {
+                        session
+                    }
+                } =
+                    await supabaseClient.auth.getSession();
+
+
+                if (session) {
+
+                    await supabaseClient.auth.signOut();
+
+                    updateLoggedOutInterface();
+
+                } else {
+
+                    openLoginModal();
+
                 }
-
-                await supabaseClient.auth.signOut();
-
-                updateHeader();
 
             }
         );
 
 
-        /* =========================
-           HEADER
-        ========================= */
+        /* ==========================================
+           ATUALIZA INTERFACE APÓS LOGOUT
+        ========================================== */
 
-        async function updateHeader() {
+        function updateLoggedOutInterface() {
 
-            if (!supabaseClient) {
+            loginButton.textContent =
+                "Entrar";
 
-                loginButton.style.display =
-                    "inline-block";
+            loginButton.classList.remove(
+                "logout-button"
+            );
 
-                logoutButton.style.display =
-                    "none";
+            premiumLocked.style.display =
+                "block";
 
-                return;
+            premiumContent.style.display =
+                "none";
 
-            }
+        }
 
+
+        /* ==========================================
+           VERIFICA SESSÃO AO ABRIR O SITE
+        ========================================== */
+
+        async function checkSession() {
 
             const {
-                data
-            } = await supabaseClient.auth.getUser();
+                data: {
+                    session
+                }
+            } =
+                await supabaseClient.auth.getSession();
 
 
-            if (data.user) {
+            if (session) {
 
-                loginButton.style.display =
-                    "none";
-
-                logoutButton.style.display =
-                    "inline-block";
+                updateLoggedInInterface();
 
             } else {
 
-                loginButton.style.display =
-                    "inline-block";
-
-                logoutButton.style.display =
-                    "none";
+                updateLoggedOutInterface();
 
             }
 
         }
 
 
-        /* =========================
-           PREMIUM
-        ========================= */
-
-        async function accessPremium(
-            resourceName
-        ) {
-
-            accessTitle.textContent =
-                resourceName;
+        checkSession();
 
 
-            if (!supabaseClient) {
+        /* ==========================================
+           OBSERVA MUDANÇAS DE AUTENTICAÇÃO
+        ========================================== */
 
-                accessModal.classList.add(
-                    "active"
-                );
+        supabaseClient.auth.onAuthStateChange(
+            function(event, session) {
 
-                return;
+                if (session) {
 
-            }
+                    updateLoggedInInterface();
 
+                } else {
 
-            const {
-                data
-            } = await supabaseClient.auth.getUser();
-
-
-            if (!data.user) {
-
-                accessModal.classList.add(
-                    "active"
-                );
-
-                return;
-
-            }
-
-
-            /*
-             * Aqui entraremos com a verificação
-             * real de assinatura Premium no Supabase.
-             *
-             * Por enquanto, a autenticação do usuário
-             * já será verificada.
-             */
-
-            alert(
-                "Usuária autenticada. A verificação da assinatura Premium será feita na próxima etapa."
-            );
-
-        }
-
-
-        /* =========================
-           ACCESS MODAL
-        ========================= */
-
-        function closeAccessModal() {
-
-            accessModal.classList.remove(
-                "active"
-            );
-
-        }
-
-
-        function openLoginFromAccess() {
-
-            closeAccessModal();
-
-            openLogin();
-
-        }
-
-
-        accessModal.addEventListener(
-            "click",
-            function(event) {
-
-                if (
-                    event.target === accessModal
-                ) {
-
-                    closeAccessModal();
+                    updateLoggedOutInterface();
 
                 }
 
             }
         );
-
-
-        /* =========================
-           FREE RESOURCES
-        ========================= */
-
-        function showFreeResource(
-            resourceName
-        ) {
-
-            alert(
-                "Recurso gratuito: " +
-                resourceName +
-                "\n\nO conteúdo deste recurso será conectado aqui na próxima etapa."
-            );
-
-        }
-
-
-        /* =========================
-           INICIALIZAÇÃO
-        ========================= */
-
-        updateHeader();
-
-
-        /*
-         * Mantém o estado da sessão atualizado.
-         */
-
-        if (supabaseClient) {
-
-            supabaseClient.auth.onAuthStateChange(
-                function() {
-
-                    updateHeader();
-
-                }
-            );
-
-        }
 
     </script>
 
